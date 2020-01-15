@@ -1,0 +1,27 @@
+
+Install using playbook,
+
+Then install MetalLB following this:
+https://github.com/vipin-k/How-to-create-Load-Balancer-on-Kubernetes-Cluster/
+
+kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
+
+kevins@kevins-ThinkPad-T490:~/Projects/DevOps/ProxmoxKubernetes$ kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
+namespace/metallb-system created
+podsecuritypolicy.policy/speaker created
+serviceaccount/controller created
+serviceaccount/speaker created
+clusterrole.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrole.rbac.authorization.k8s.io/metallb-system:speaker created
+role.rbac.authorization.k8s.io/config-watcher created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker created
+rolebinding.rbac.authorization.k8s.io/config-watcher created
+daemonset.apps/speaker created
+deployment.apps/controller created
+
+
+Then run:
+   kubectl get pods,serviceaccounts,deployments,roles,rolebindings -n metallb-system
+
+Next edit matlb.yaml

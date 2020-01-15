@@ -1,0 +1,6 @@
+
+
+ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory.ini site.yml
+
+ansible-playbook -i inventory.ini playbooks/optional/delete_all_resources.yml
