@@ -19,7 +19,9 @@ Add playbooks for uding ingress, load balancing, unattended upgrades, the Dashbo
 **Required:**
 
 1. Modify the `vars.yml` file with values specific to your environment.
-2. Provision DNS A records for the IP Addresses & Hostnames you defined for your nodes in the `vars.yml` file.
+2. Create DNS A records for the IP Addresses & Hostnames you defined for your nodes in the `vars.yml` file.
+3. Create DHCP records for the MAC addresses.   I just generated my own using my given host names
+   macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
 3. Modify the `inventory.ini` file to reflect your chosen DNS records and the location of the SSH keys used to connect to the nodes.
 4. Run the deployment: `ansible-playbook -i inventory.ini site.yml`
 5. After deployment, a `~/.kube` directory will be created on your workstation. You can use the `config` file within to interact with your cluster.
@@ -40,28 +42,10 @@ Add playbooks for uding ingress, load balancing, unattended upgrades, the Dashbo
 
 ## Tips
 1. You can rollback the entire deployment with: `ansible-playbook -i inventory.ini playbooks/optional/delete_all_resources.yml`
-2. If Calico isn't deploying correctly it's likely the CIDR you assigned to it in `vars.yml` conflicts with your network. 
-3. [There appears to be an issue](https://forum.proxmox.com/threads/has-cloud-init-been-changed-between-5-3-and-6-0.56175/) with Proxmox's `cloud-init` implementation. Perhaps just with Debian? As a result, your VM might not have the correct information in `/etc/resolv.conf` and may also have multiple IP Addresses assigned to the `eth0` network interfaces. Furthermore, if you do not have a DHCP server active in the network that you are provisoning the VMs to, it is entirely possible that nothing will be present at all in `/etc/resolv.conf`.  
-4. See [this repository](https://github.com/zimmertr/Bootstrap-Kubernetes-with-LXC) to do this with LXC instead.  Benefits of using LXC include:
-```
-* No virtualization overhead means better performance
-* Ability to directly mount volumes from your server into your containers.
-```
 
 
-## TODO
-1. Add better support for multi-node Proxmox clusters.
-2. Perform security audit and enhance if necessary.
-3. Add info to README about updating inventory file and how to handle SSH key generation and propegation.
-4. Create playbook to upgrade kubernetes version for kubeadm cluster.
-
-
-## Problems
-1. The `proxmox_kvm` module is out of date and does not support cloudinit related api calls. Meaning shell commands must be used instead to perform `qm create` tasks. 
-2. The `k8s` module does not support applying Kubernetes Deployments from URL. Instead of using `get_url` to download them first, and then apply them with `k8s`, I just use `shell` to run a `kubectl apply -f`. [Feature Request here](https://github.com/ansible/ansible/issues/48402).
-3. Miscellaneous `qcow2` image issues:
-
-| OS | Issue |
-| -- | ----- |
-| CentOS | A nameserver is baked into `/etc/resolv.conf` by default. [Bug Report here](https://bugs.centos.org/view.php?id=15426) |
-| CoreOS | Proxmix issued cloud-init does not seem to configure networking properly. |
+ToDo
+1. Explain things a little better
+2. Add playbook to add another node to a cluster
+3. Try using different qcow2 images as the debian one, while slow, has issues.
+4. All of this, including the DNS and MAC addresses could be in ansible....  
