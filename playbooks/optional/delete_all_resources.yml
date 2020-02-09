@@ -7,11 +7,15 @@
         - "{{ k8s_node1_id }}"
         - "{{ k8s_node2_id }}"
         - "{{ k8s_node3_id }}" 
+        - "{{ k8s_node4_id }}" 
+        - "{{ k8s_node5_id }}" 
     name_list:
         - "{{ k8s_master_hn }}"
         - "{{ k8s_node1_hn }}"
         - "{{ k8s_node2_hn }}"
         - "{{ k8s_node3_hn }}"
+        - "{{ k8s_node4_hn }}"
+        - "{{ k8s_node5_hn }}"
   tasks: 
       - name: Including the variables.
         include_vars:

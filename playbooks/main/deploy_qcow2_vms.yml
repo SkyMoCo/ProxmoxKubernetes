@@ -8,11 +8,15 @@
         - "{{ k8s_node1_id }}"
         - "{{ k8s_node2_id }}"
         - "{{ k8s_node3_id }}"      
+        - "{{ k8s_node4_id }}"      
+        - "{{ k8s_node5_id }}"      
     id_stg_list:
         - { id: "{{ k8s_master_id }}", stg: "{{ k8s_master_stg }}" }
         - { id: "{{ k8s_node1_id }}", stg: "{{ k8s_node1_stg }}" }
         - { id: "{{ k8s_node2_id }}", stg: "{{ k8s_node2_stg }}" }
         - { id: "{{ k8s_node3_id }}", stg: "{{ k8s_node3_stg }}" }      
+        - { id: "{{ k8s_node4_id }}", stg: "{{ k8s_node4_stg }}" }      
+        - { id: "{{ k8s_node5_id }}", stg: "{{ k8s_node5_stg }}" }      
   tasks:
       - name: Including the variables.
         include_vars:
@@ -49,6 +53,8 @@
             - { id: "{{ k8s_node1_id }}", hn: "{{ k8s_node1_hn }}", cpu: "{{ k8s_node1_cpu }}", mem: "{{ k8s_node1_mem }}", bridge: "{{ k8s_node1_bridge }}", gw: "{{ k8s_node1_gw }}", ip: "{{ k8s_node1_ip }}", sn: "{{ k8s_node1_sn }}", ns: "{{ k8s_node1_ns }}", sd: "{{ k8s_node1_sd }}", mac:  "{{ k8s_node1_mac }}"  }
             - { id: "{{ k8s_node2_id }}", hn: "{{ k8s_node2_hn }}", cpu: "{{ k8s_node2_cpu }}", mem: "{{ k8s_node2_mem }}", bridge: "{{ k8s_node2_bridge }}", gw: "{{ k8s_node2_gw }}", ip: "{{ k8s_node2_ip }}", sn: "{{ k8s_node2_sn }}", ns: "{{ k8s_node2_ns }}", sd: "{{ k8s_node2_sd }}", mac:  "{{ k8s_node2_mac }}" }
             - { id: "{{ k8s_node3_id }}", hn: "{{ k8s_node3_hn }}", cpu: "{{ k8s_node3_cpu }}", mem: "{{ k8s_node3_mem }}", bridge: "{{ k8s_node3_bridge }}", gw: "{{ k8s_node3_gw }}", ip: "{{ k8s_node3_ip }}", sn: "{{ k8s_node3_sn }}", ns: "{{ k8s_node3_ns }}", sd: "{{ k8s_node3_sd }}", mac:  "{{ k8s_node3_mac }}" }
+            - { id: "{{ k8s_node4_id }}", hn: "{{ k8s_node4_hn }}", cpu: "{{ k8s_node4_cpu }}", mem: "{{ k8s_node4_mem }}", bridge: "{{ k8s_node4_bridge }}", gw: "{{ k8s_node4_gw }}", ip: "{{ k8s_node4_ip }}", sn: "{{ k8s_node4_sn }}", ns: "{{ k8s_node4_ns }}", sd: "{{ k8s_node4_sd }}", mac:  "{{ k8s_node4_mac }}" }
+            - { id: "{{ k8s_node5_id }}", hn: "{{ k8s_node5_hn }}", cpu: "{{ k8s_node5_cpu }}", mem: "{{ k8s_node5_mem }}", bridge: "{{ k8s_node5_bridge }}", gw: "{{ k8s_node5_gw }}", ip: "{{ k8s_node5_ip }}", sn: "{{ k8s_node5_sn }}", ns: "{{ k8s_node5_ns }}", sd: "{{ k8s_node5_sd }}", mac:  "{{ k8s_node5_mac }}" }
 
       - name: Setting the VLAN Tags for the VMs. 
         shell: >
@@ -60,6 +66,8 @@
             - { id: "{{ k8s_node1_id }}", bridge: "{{ k8s_node1_bridge }}", vlan: "{{ k8s_node1_vlan }}" }
             - { id: "{{ k8s_node2_id }}", bridge: "{{ k8s_node2_bridge }}", vlan: "{{ k8s_node2_vlan }}" }
             - { id: "{{ k8s_node3_id }}", bridge: "{{ k8s_node3_bridge }}", vlan: "{{ k8s_node3_vlan }}" }
+            - { id: "{{ k8s_node4_id }}", bridge: "{{ k8s_node4_bridge }}", vlan: "{{ k8s_node4_vlan }}" }
+            - { id: "{{ k8s_node5_id }}", bridge: "{{ k8s_node5_bridge }}", vlan: "{{ k8s_node5_vlan }}" }
         when: 
             - k8s_master_vlan is defined 
             - k8s_master_vlan|length != 0
@@ -69,6 +77,10 @@
             - k8s_node2_vlan|length != 0
             - k8s_node3_vlan is defined
             - k8s_node3_vlan|length != 0
+            - k8s_node4_vlan is defined
+            - k8s_node4_vlan|length != 0
+            - k8s_node5_vlan is defined
+            - k8s_node5_vlan|length != 0
 
       - name: Importing the qcow2 image as a disk.
         shell: qm importdisk {{ item.id }} {{ qcow2_download_location }}image.qcow2 {{ item.stg }}
@@ -93,6 +105,8 @@
             - { id: "{{ k8s_node1_id }}", size: "{{ k8s_node1_size }}" }
             - { id: "{{ k8s_node2_id }}", size: "{{ k8s_node2_size }}" }
             - { id: "{{ k8s_node3_id }}", size: "{{ k8s_node3_size }}" }
+            - { id: "{{ k8s_node4_id }}", size: "{{ k8s_node4_size }}" }
+            - { id: "{{ k8s_node5_id }}", size: "{{ k8s_node5_size }}" }
 
       - name: Starting the VMs.
         shell: qm start {{ item }}
@@ -109,6 +123,8 @@
             - "{{ k8s_node1_hn }}"
             - "{{ k8s_node2_hn }}"
             - "{{ k8s_node3_hn }}"
+            - "{{ k8s_node4_hn }}"
+            - "{{ k8s_node5_hn }}"
 
       - name: Waiting 10 minutes for for Debian to finish booting.
         pause:

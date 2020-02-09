@@ -22,81 +22,110 @@ k8s_ssh_key: '/etc/pve/priv/k8rsa.pub'
 
 # VM IDs
 k8s_master_id: '4010'
-k8s_node1_id: '40100'
-k8s_node2_id: '40101'
-k8s_node3_id: '40102'
+k8s_node1_id: '40101'
+k8s_node2_id: '40102'
+k8s_node3_id: '40103'
+k8s_node4_id: '40104'
+k8s_node5_id: '40105'
 
 # Hostnames
-k8s_master_hn: 'Kmaster0'
-k8s_node1_hn: 'Knode1'
-k8s_node2_hn: 'Knode2'
-k8s_node3_hn: 'Knode3'
+k8s_master_hn: 'K8master0'
+k8s_node1_hn: 'K8node1'
+k8s_node2_hn: 'K8node2'
+k8s_node3_hn: 'K8node3'
+k8s_node4_hn: 'K8node4'
+k8s_node5_hn: 'K8node5'
 
 # Number of CPUs
 k8s_master_cpu: '2'
 k8s_node1_cpu: '4'
 k8s_node2_cpu: '4'
 k8s_node3_cpu: '4'
+k8s_node4_cpu: '4'
+k8s_node5_cpu: '4'
+
 
 # Amount of memory expressed in megabytes
 k8s_master_mem: '5120'
 k8s_node1_mem: '10240'
 k8s_node2_mem: '10240'
 k8s_node3_mem: '10240'
+k8s_node4_mem: '10240'
+k8s_node5_mem: '10240'
 
 # Disk Sizes
 k8s_master_size: '50G'
 k8s_node1_size: '50G'
 k8s_node2_size: '50G'
 k8s_node3_size: '50G'
+k8s_node4_size: '50G'
+k8s_node5_size: '50G'
 
 # IP Addresses
-k8s_master_ip: '192.168.254.125'
-k8s_node1_ip: '192.168.254.126'
-k8s_node2_ip: '192.168.254.127'
-k8s_node3_ip: '192.168.254.128'
+k8s_master_ip: '172.26.0.113'
+k8s_node1_ip: '172.26.0.114'
+k8s_node2_ip: '172.26.0.115'
+k8s_node3_ip: '172.26.0.116'
+k8s_node4_ip: '172.26.0.117'
+k8s_node5_ip: '172.26.0.118'
 
 # MAC Addresses
-k8s_master_mac: 'AA:07:E2:77:68:E1'
-k8s_node1_mac: '42:4A:B6:03:C0:8D'
-k8s_node2_mac: '2E:86:85:97:5D:FC'
-k8s_node3_mac: '6E:AD:21:88:41:E9'
+# 
+k8s_master_mac: '02:a6:42:7e:53:2c'
+k8s_node1_mac:  '02:5f:0a:09:aa:55'
+k8s_node2_mac:  '02:db:e8:af:bb:89'
+k8s_node3_mac:  '02:b6:80:d0:60:c6'
+k8s_node4_mac:  '02:5b:09:8c:1c:92'
+k8s_node5_mac:  '02:bf:05:38:37:6e'
+
 
 # Subnet Sizes
-k8s_master_sn: '/24'
-k8s_node1_sn: '/24'
-k8s_node2_sn: '/24'
-k8s_node3_sn: '/24'
+k8s_master_sn: '/23'
+k8s_node1_sn: '/23'
+k8s_node2_sn: '/23'
+k8s_node3_sn: '/23'
+k8s_node4_sn: '/23'
+k8s_node5_sn: '/23'
 
 # Network Gateway
-k8s_master_gw: '192.168.254.250'
-k8s_node1_gw: '192.168.254.250'
-k8s_node2_gw: '192.168.254.250'
-k8s_node3_gw: '192.168.254.250'
+k8s_master_gw: '172.26.0.1'
+k8s_node1_gw: '172.26.0.1'
+k8s_node2_gw: '172.26.0.1'
+k8s_node3_gw: '172.26.0.1'
+k8s_node4_gw: '172.26.0.1'
+k8s_node5_gw: '172.26.0.1'
 
 # DNS Servers
-k8s_master_ns: '192.168.254.250'
-k8s_node1_ns: '192.168.254.250'
-k8s_node2_ns: '192.168.254.250'
-k8s_node3_ns: '192.168.254.250'
+k8s_master_ns: '172.26.0.200'
+k8s_node1_ns: '172.26.0.200'
+k8s_node2_ns: '172.26.0.200'
+k8s_node3_ns: '172.26.0.200'
+k8s_node4_ns: '172.26.0.200'
+k8s_node5_ns: '172.26.0.200'
 
 # Search Domains
-k8s_master_sd: 'smokewood.int'
-k8s_node1_sd: 'smokewood.int'
-k8s_node2_sd: 'smokewood.int'
-k8s_node3_sd: 'smokewood.int'
+k8s_master_sd: 'int.skymoco.dev'
+k8s_node1_sd: 'int.skymoco.dev'
+k8s_node2_sd: 'int.skymoco.dev'
+k8s_node3_sd: 'int.skymoco.dev'
+k8s_node4_sd: 'int.skymoco.dev'
+k8s_node5_sd: 'int.skymoco.dev'
 
 # Network Bridges
 k8s_master_bridge: 'vmbr0'
 k8s_node1_bridge: 'vmbr0'
 k8s_node2_bridge: 'vmbr0'
 k8s_node3_bridge: 'vmbr0'
+k8s_node4_bridge: 'vmbr0'
+k8s_node5_bridge: 'vmbr0'
 
 # Storage volumes
 k8s_master_stg: 'storage'
 k8s_node1_stg: 'storage'
 k8s_node2_stg: 'storage'
 k8s_node3_stg: 'storage'
+k8s_node4_stg: 'storage'
+k8s_node5_stg: 'storage'
 
 # CIDR for the Calico Pod Network - MUST be different from your Kubernetes CIDR to avoid an IP conflict. Subnet size will automatically be set to /16.
 calico_cidr: '172.16.0.0'
@@ -110,7 +139,7 @@ calico_policy_url: 'https://docs.projectcalico.org/v3.8/manifests/calico.yaml'
 k8s_dashboard_url: 'https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml'
 
 # Service user created for the dashboard.
-k8s_user_name: 'tj'
+k8s_user_name: 'kevins'
 
 
 ###############################################################################################
@@ -223,7 +252,7 @@ remove_unused_dependencies: "true"
 ###############################################################################################
 
 # NFS server, you can use your proxmox server, but you don't have to
-nfs_hostname: 'vbox.smokewood.int'
+nfs_hostname: 'rbox.int.skymoco.dev'
 
 # NFS Mount Point
 nfs_mount_point: '/spool/persistentvolumes'
@@ -272,7 +301,7 @@ nfs_reclaim_policy: 'Retain'
 ###############################################################################################
 
 # The IP Address of the router you wish to peer with.
-metallb_peer_router: '192.168.1.1'
+metallb_peer_router: '172.26.0.1'
 
 # The AS Number of the router you wish to peer with.
 metallb_peer_asn: '64512'
